@@ -55,21 +55,21 @@ resources:
         LoggingConfiguration:
           DestinationBucketName: !Ref LoggingBucket
           LogFilePrefix: testing-logs
-        IntelligentTieringConfiguration:
-          Id: S3BucketPaultipperslstest20210211_Tier
-          Status: Enabled
-          Tierings: 
-            - AccessTier: ARCHIVE_ACCESS
-              Days: 120
-        # LifecycleConfiguration:
-        #   Rules:
-        #     - Id: GlacierRule
-        #       Prefix: glacier
-        #       Status: Enabled
-        #       ExpirationInDays: 365
-        #       Transitions:
-        #         - TransitionInDays: 2
-        #           StorageClass: GLACIER
+        # IntelligentTieringConfiguration:
+        #   Id: S3BucketPaultipperslstest20210211_Tier
+        #   Status: Enabled
+        #   Tierings: 
+        #     - AccessTier: ARCHIVE_ACCESS
+        #       Days: 120
+        LifecycleConfiguration:
+          Rules:
+            - Id: GlacierRule
+              Prefix: glacier
+              Status: Enabled
+              ExpirationInDays: 365
+              Transitions:
+                - TransitionInDays: 2
+                  StorageClass: GLACIER
         AnalyticsConfigurations:
           - Id: AnalyticsConfigurationId
             StorageClassAnalysis:
